@@ -69,9 +69,9 @@ class PolynomialRegressor:
 
         Parameters
         ----------
-        training_data : XYPair
+        training_data : XYPair, shape=(2, n_samples, n_features)
             The training data of the polynomial regressor.
-        test_data : XYPair, optional
+        test_data : XYPair, shape=(2, n_samples, 1), optional
             The test data of the polynomial regressor. By default, None.
         verbose : int {0, 1}, optional
             The verbosity of the operation. By default, 0 which means
@@ -85,10 +85,10 @@ class PolynomialRegressor:
         self.test_data = test_data
 
         self.n_samples = len(self.training_data.X)
-        if isinstance(self.training_data.X, int):
-            self.n_features = 1
-        else:
+        if hasattr(self.training_data.X[0], '__len__'):
             self.n_features = len(self.training_data.X[0])
+        else:
+            self.n_features = 1
 
         self.cache = {}
 
@@ -185,7 +185,7 @@ class PolynomialRegressor:
         return ['*'.join(label.split()) for label in labels]
 
     def print_func(self):
-        """Print polynomial estimate"""
+        """Print polynomial function"""
         print(' + '.join("%lf*%s" % nomial for nomial in self.func))
 
     def score(self, test_data=None):
