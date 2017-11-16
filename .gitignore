@@ -97,3 +97,9 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+data/E.npy
+data/X.npy
+data/Y.npy
+data/Y_lower_bound.npy
+data/Y_upper_bound.npy
