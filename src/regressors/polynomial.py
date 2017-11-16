@@ -20,7 +20,7 @@ class PolynomialRegressor:
     industry so if bugs are found, help him squash them.
     """
     def __init__(self, degree='auto', test_degrees=10, eps=0.01,
-                 early_stopping=True, patience=1, to_cache=False):
+                 early_stopping=True, patience=3, to_cache=False):
         """Initialize the polynomial regressor
 
         Todo
@@ -44,7 +44,7 @@ class PolynomialRegressor:
         patience : int, optional
             The number of consecutive iterrations where the performance
             of the polynomial estimate does not improve before
-            cross_validation is stopped.
+            cross_validation is stopped. By default 3.
         to_cache : bool, optional
             Option to cache the results of the polynomial regression. By
             default, True.
