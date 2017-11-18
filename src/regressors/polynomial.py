@@ -1,3 +1,4 @@
+import copy
 import numpy as np
 
 from sklearn.pipeline import Pipeline
@@ -81,8 +82,8 @@ class PolynomialRegressor:
         -------
         self : instance
         """
-        self.training_data = training_data
-        self.test_data = test_data
+        self.training_data = copy.deepcopy(training_data)
+        self.test_data = copy.deepcopy(test_data)
 
         self.n_samples = len(self.training_data.X)
         if hasattr(self.training_data.X[0], '__len__'):
