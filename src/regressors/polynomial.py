@@ -49,7 +49,7 @@ class PolynomialRegressor:
             Option to cache the results of the polynomial regression. By
             default, True.
         """
-        self.degree = degree
+        self.def_degree = degree
         if hasattr(test_degrees, "__iter__"):
             if not test_degrees:
                 self.test_degrees = [0]
@@ -92,10 +92,10 @@ class PolynomialRegressor:
 
         self.cache = {}
 
-        if self.degree == 'auto':
+        if self.def_degree == 'auto':
             self._regress(self._cross_validation(verbose), verbose)
         else:
-            self._regress(self.degree, verbose)
+            self._regress(self.def_degree, verbose)
 
         return self
 
