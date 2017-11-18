@@ -6,7 +6,7 @@ from sklearn.preprocessing import PolynomialFeatures
 
 from collections import namedtuple
 ModelData = namedtuple('ModelData',
-                       'model degree Y_est r_sqaured powers coefs labels func')
+                       'model degree r_sqaured powers coefs labels func')
 XYPair = namedtuple('XYPair', 'X Y')
 
 
@@ -142,7 +142,7 @@ class PolynomialRegressor:
             nothing will be printed.
         """
         if degree in self.cache:
-            self.model, self.degree, self.Y_est, self.r_sqaured, self.powers, self.coefs, self.labels, self.func = self.cache[degree]
+            self.model, self.degree, self.r_sqaured, self.powers, self.coefs, self.labels, self.func = self.cache[degree]
         else:
             self.model = Pipeline([('poly', PolynomialFeatures(degree=degree)),
                                    ('linear', LinearRegression(fit_intercept=False))])
@@ -157,12 +157,9 @@ class PolynomialRegressor:
             self.labels = self._calc_labels()
             self.func = list(zip(self.coefs[0], self.labels))
 
-            self.Y_est = self.predict()
-
             if self.to_cache:
                 self.cache[degree] = ModelData(self.model,
                                                self.degree,
-                                               self.Y_est,
                                                self.r_sqaured,
                                                self.powers,
                                                self.coefs,
