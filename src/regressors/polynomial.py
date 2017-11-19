@@ -14,11 +14,11 @@ XYPair = namedtuple('XYPair', 'X Y')
 class PolynomialRegressor:
     """Polynomial Regression
 
-    The optimal degree of the polynomial can also be automatically
-    determined when initialized with degree='auto'.
+    Does polynomial regression. The optimal degree of the polynomial will
+    also be automatically determined when initialized with degree='auto'.
 
     Note: The original author do not have adequate experience in the
-    industry so if bugs are found, help him squash them.
+    industry so if bugs are found, please help him squash them.
     """
     def __init__(self, degree='auto', test_degrees=10, eps=0.01,
                  early_stopping=True, patience=3, to_cache=False):
